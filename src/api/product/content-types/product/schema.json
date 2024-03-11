@@ -1,0 +1,97 @@
+{
+  "kind": "collectionType",
+  "collectionName": "products",
+  "info": {
+    "singularName": "product",
+    "pluralName": "products",
+    "displayName": "Product",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "product_name": {
+      "type": "string",
+      "required": true
+    },
+    "product_price": {
+      "type": "decimal"
+    },
+    "company": {
+      "type": "string",
+      "required": true
+    },
+    "rating": {
+      "type": "decimal",
+      "required": true
+    },
+    "material": {
+      "type": "string",
+      "required": true
+    },
+    "available_product": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "product_id": {
+      "type": "integer",
+      "required": true,
+      "unique": true
+    },
+    "product_key": {
+      "type": "uid",
+      "targetField": "product_name"
+    },
+    "garment_type": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::garment-type.garment-type"
+    },
+    "neck_design": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::neck-design.neck-design"
+    },
+    "size": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::size.size"
+    },
+    "sleeve": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::sleeve.sleeve"
+    },
+    "work": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::work.work"
+    },
+    "gender": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::gender.gender"
+    },
+    "category": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::category.category"
+    },
+    "occasion": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::occasion.occasion"
+    },
+    "color": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::color.color"
+    }
+  }
+}

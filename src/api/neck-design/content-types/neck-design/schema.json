@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "neck_designs",
+  "info": {
+    "singularName": "neck-design",
+    "pluralName": "neck-designs",
+    "displayName": "Neck_design",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "neckdesignes": {
+      "type": "string"
+    }
+  }
+}

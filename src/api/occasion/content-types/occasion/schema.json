@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "occasions",
+  "info": {
+    "singularName": "occasion",
+    "pluralName": "occasions",
+    "displayName": "Occasion"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "occasion": {
+      "type": "string"
+    }
+  }
+}

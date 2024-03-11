@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "fabrics",
+  "info": {
+    "singularName": "fabric",
+    "pluralName": "fabrics",
+    "displayName": "Fabric"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "fabric": {
+      "type": "string"
+    }
+  }
+}
