@@ -12,14 +12,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "product_name": {
-      "type": "string",
-      "required": true
-    },
-    "product_price": {
-      "type": "decimal"
-    },
-    "company": {
+    "brand_name": {
       "type": "string",
       "required": true
     },
@@ -27,26 +20,13 @@
       "type": "decimal",
       "required": true
     },
-    "material": {
-      "type": "string",
-      "required": true
-    },
-    "available_product": {
+    "image": {
       "type": "media",
       "multiple": true,
       "required": true,
       "allowedTypes": [
         "images"
       ]
-    },
-    "product_id": {
-      "type": "integer",
-      "required": true,
-      "unique": true
-    },
-    "product_key": {
-      "type": "uid",
-      "targetField": "product_name"
     },
     "garment_type": {
       "type": "relation",
@@ -68,11 +48,6 @@
       "relation": "oneToOne",
       "target": "api::sleeve.sleeve"
     },
-    "work": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::work.work"
-    },
     "gender": {
       "type": "relation",
       "relation": "oneToOne",
@@ -92,6 +67,41 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::color.color"
+    },
+    "original_price": {
+      "type": "decimal"
+    },
+    "rental_price": {
+      "type": "decimal",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "title": {
+      "type": "string"
+    },
+    "outfit_wore": {
+      "type": "integer"
+    },
+    "scurity_deposite": {
+      "type": "decimal"
+    },
+    "delivery_date": {
+      "type": "date"
+    },
+    "fabric": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::fabric.fabric"
+    },
+    "length": {
+      "type": "integer"
+    },
+    "rent_period": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::rent-period.rent-period"
     }
   }
 }

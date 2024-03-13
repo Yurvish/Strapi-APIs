@@ -1,18 +1,17 @@
 {
   "kind": "collectionType",
-  "collectionName": "sizes",
+  "collectionName": "rent_periods",
   "info": {
-    "singularName": "size",
-    "pluralName": "sizes",
-    "displayName": "Size",
-    "description": ""
+    "singularName": "rent-period",
+    "pluralName": "rent-periods",
+    "displayName": "Rent_period"
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "size": {
+    "days": {
       "type": "string"
     }
   }

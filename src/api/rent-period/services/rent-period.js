@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * work service
+ * rent-period service
  */
 
 const { createCoreService } = require('@strapi/strapi').factories;
 
-module.exports = createCoreService('api::work.work');
+module.exports = createCoreService('api::rent-period.rent-period');

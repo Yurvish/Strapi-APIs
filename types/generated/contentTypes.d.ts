@@ -783,18 +783,56 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiAddressAddress extends Schema.CollectionType {
+  collectionName: 'addresses';
+  info: {
+    singularName: 'address';
+    pluralName: 'addresses';
+    displayName: 'Address';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    addess: Attribute.Text;
+    city: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::address.address',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::address.address',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiCategoryCategory extends Schema.CollectionType {
   collectionName: 'categories';
   info: {
     singularName: 'category';
     pluralName: 'categories';
     displayName: 'Category';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    type: Attribute.String;
+    category: Attribute.String;
+    gender: Attribute.Relation<
+      'api::category.category',
+      'oneToOne',
+      'api::gender.gender'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -935,36 +973,6 @@ export interface ApiGenderGender extends Schema.CollectionType {
   };
 }
 
-export interface ApiLocationLocation extends Schema.CollectionType {
-  collectionName: 'locations';
-  info: {
-    singularName: 'location';
-    pluralName: 'locations';
-    displayName: 'Location';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    address: Attribute.Text & Attribute.Required;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::location.location',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::location.location',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiNeckDesignNeckDesign extends Schema.CollectionType {
   collectionName: 'neck_designs';
   info: {
@@ -1026,6 +1034,56 @@ export interface ApiOccasionOccasion extends Schema.CollectionType {
   };
 }
 
+export interface ApiOrderOrder extends Schema.CollectionType {
+  collectionName: 'orders';
+  info: {
+    singularName: 'order';
+    pluralName: 'orders';
+    displayName: 'Order';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    product: Attribute.Relation<
+      'api::order.order',
+      'oneToOne',
+      'api::product.product'
+    >;
+    pyment_info: Attribute.JSON;
+    name: Attribute.String;
+    amount: Attribute.Decimal;
+    status: Attribute.String;
+    users_permissions_user: Attribute.Relation<
+      'api::order.order',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    address: Attribute.Relation<
+      'api::order.order',
+      'oneToOne',
+      'api::address.address'
+    >;
+    tranjection_id: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::order.order',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::order.order',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiProductProduct extends Schema.CollectionType {
   collectionName: 'products';
   info: {
@@ -1038,14 +1096,9 @@ export interface ApiProductProduct extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    product_name: Attribute.String & Attribute.Required;
-    product_price: Attribute.Decimal;
-    company: Attribute.String & Attribute.Required;
+    brand_name: Attribute.String & Attribute.Required;
     rating: Attribute.Decimal & Attribute.Required;
-    material: Attribute.String & Attribute.Required;
-    available_product: Attribute.Media & Attribute.Required;
-    product_id: Attribute.Integer & Attribute.Required & Attribute.Unique;
-    product_key: Attribute.UID<'api::product.product', 'product_name'>;
+    image: Attribute.Media & Attribute.Required;
     garment_type: Attribute.Relation<
       'api::product.product',
       'oneToOne',
@@ -1065,11 +1118,6 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'api::product.product',
       'oneToOne',
       'api::sleeve.sleeve'
-    >;
-    work: Attribute.Relation<
-      'api::product.product',
-      'oneToOne',
-      'api::work.work'
     >;
     gender: Attribute.Relation<
       'api::product.product',
@@ -1091,6 +1139,24 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'oneToOne',
       'api::color.color'
     >;
+    original_price: Attribute.Decimal;
+    rental_price: Attribute.Decimal & Attribute.Required;
+    description: Attribute.Text;
+    title: Attribute.String;
+    outfit_wore: Attribute.Integer;
+    scurity_deposite: Attribute.Decimal;
+    delivery_date: Attribute.Date;
+    fabric: Attribute.Relation<
+      'api::product.product',
+      'oneToOne',
+      'api::fabric.fabric'
+    >;
+    length: Attribute.Integer;
+    rent_period: Attribute.Relation<
+      'api::product.product',
+      'oneToOne',
+      'api::rent-period.rent-period'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1102,6 +1168,36 @@ export interface ApiProductProduct extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::product.product',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiRentPeriodRentPeriod extends Schema.CollectionType {
+  collectionName: 'rent_periods';
+  info: {
+    singularName: 'rent-period';
+    pluralName: 'rent-periods';
+    displayName: 'Rent_period';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    days: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::rent-period.rent-period',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::rent-period.rent-period',
       'oneToOne',
       'admin::user'
     > &
@@ -1154,7 +1250,7 @@ export interface ApiSizeSize extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    type: Attribute.String;
+    size: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1178,6 +1274,11 @@ export interface ApiSleeveSleeve extends Schema.CollectionType {
   };
   attributes: {
     sleeves: Attribute.String;
+    category: Attribute.Relation<
+      'api::sleeve.sleeve',
+      'oneToOne',
+      'api::category.category'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1192,29 +1293,6 @@ export interface ApiSleeveSleeve extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiWorkWork extends Schema.CollectionType {
-  collectionName: 'works';
-  info: {
-    singularName: 'work';
-    pluralName: 'works';
-    displayName: 'Work';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    work: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::work.work', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::work.work', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -1237,19 +1315,20 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::address.address': ApiAddressAddress;
       'api::category.category': ApiCategoryCategory;
       'api::color.color': ApiColorColor;
       'api::fabric.fabric': ApiFabricFabric;
       'api::garment-type.garment-type': ApiGarmentTypeGarmentType;
       'api::gender.gender': ApiGenderGender;
-      'api::location.location': ApiLocationLocation;
       'api::neck-design.neck-design': ApiNeckDesignNeckDesign;
       'api::occasion.occasion': ApiOccasionOccasion;
+      'api::order.order': ApiOrderOrder;
       'api::product.product': ApiProductProduct;
+      'api::rent-period.rent-period': ApiRentPeriodRentPeriod;
       'api::sign-up.sign-up': ApiSignUpSignUp;
       'api::size.size': ApiSizeSize;
       'api::sleeve.sleeve': ApiSleeveSleeve;
-      'api::work.work': ApiWorkWork;
     }
   }
 }

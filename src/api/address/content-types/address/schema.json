@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "works",
+  "collectionName": "addresses",
   "info": {
-    "singularName": "work",
-    "pluralName": "works",
-    "displayName": "Work",
+    "singularName": "address",
+    "pluralName": "addresses",
+    "displayName": "Address",
     "description": ""
   },
   "options": {
@@ -12,7 +12,10 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "work": {
+    "addess": {
+      "type": "text"
+    },
+    "city": {
       "type": "string"
     }
   }
