@@ -1092,12 +1092,12 @@ export interface ApiOrderOrder extends Schema.CollectionType {
       'api::product.product'
     >;
     pyment_info: Attribute.JSON;
-    name: Attribute.String;
-    amount: Attribute.Decimal;
-    status: Attribute.String;
+    name: Attribute.String & Attribute.Required;
+    amount: Attribute.Decimal & Attribute.Required;
+    status: Attribute.String & Attribute.Required;
     user: Attribute.Relation<
       'api::order.order',
-      'oneToOne',
+      'manyToOne',
       'plugin::users-permissions.user'
     >;
     address: Attribute.Relation<
@@ -1105,7 +1105,7 @@ export interface ApiOrderOrder extends Schema.CollectionType {
       'oneToOne',
       'api::address.address'
     >;
-    tranjection_id: Attribute.String;
+    tranjection_id: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1154,11 +1154,6 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'oneToOne',
       'api::fabric.fabric'
     >;
-    admin_user: Attribute.Relation<
-      'api::product.product',
-      'oneToOne',
-      'admin::user'
-    >;
     size: Attribute.Relation<
       'api::product.product',
       'oneToOne',
@@ -1184,6 +1179,12 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'oneToMany',
       'api::order.order'
     >;
+    user: Attribute.Relation<
+      'api::product.product',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    > &
+      Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

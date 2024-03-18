@@ -57,11 +57,6 @@
       "relation": "oneToOne",
       "target": "api::fabric.fabric"
     },
-    "admin_user": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "admin::user"
-    },
     "size": {
       "type": "relation",
       "relation": "oneToOne",
@@ -87,6 +82,12 @@
       "relation": "oneToMany",
       "target": "api::order.order",
       "mappedBy": "product"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "required": true
     }
   }
 }

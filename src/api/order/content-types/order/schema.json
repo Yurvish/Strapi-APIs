@@ -22,17 +22,20 @@
       "type": "json"
     },
     "name": {
-      "type": "string"
+      "type": "string",
+      "required":true
     },
     "amount": {
-      "type": "decimal"
+      "type": "decimal",
+      "required":true
     },
     "status": {
-      "type": "string"
+      "type": "string",
+      "required":true
     },
     "user": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "manyToOne",
       "target": "plugin::users-permissions.user"
     },
     "address": {
@@ -41,7 +44,9 @@
       "target": "api::address.address"
     },
     "tranjection_id": {
-      "type": "string"
+      "type": "string",
+      "required":true
+      
     }
   }
 }
