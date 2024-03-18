@@ -4,7 +4,8 @@
   "info": {
     "singularName": "occasion",
     "pluralName": "occasions",
-    "displayName": "Occasion"
+    "displayName": "Occasion",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -12,7 +13,8 @@
   "pluginOptions": {},
   "attributes": {
     "occasion": {
-      "type": "string"
+      "type": "string",
+      "required": true
     }
   }
 }

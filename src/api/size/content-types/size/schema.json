@@ -13,7 +13,8 @@
   "pluginOptions": {},
   "attributes": {
     "size": {
-      "type": "string"
+      "type": "string",
+      "required": true
     }
   }
 }

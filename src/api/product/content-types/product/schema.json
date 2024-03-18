@@ -14,11 +14,7 @@
   "attributes": {
     "brand_name": {
       "type": "string",
-      "required": true
-    },
-    "rating": {
-      "type": "decimal",
-      "required": true
+      "required": false
     },
     "image": {
       "type": "media",
@@ -28,25 +24,48 @@
         "images"
       ]
     },
-    "garment_type": {
+    "color": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::garment-type.garment-type"
+      "target": "api::color.color"
     },
-    "neck_design": {
+    "original_price": {
+      "type": "decimal",
+      "required": true
+    },
+    "rental_price": {
+      "type": "decimal",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "title": {
+      "type": "string",
+      "required": false
+    },
+    "outfit_wore": {
+      "type": "integer",
+      "required": true
+    },
+    "scurity_deposite": {
+      "type": "decimal",
+      "required": false
+    },
+    "fabric": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::neck-design.neck-design"
+      "target": "api::fabric.fabric"
+    },
+    "admin_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "admin::user"
     },
     "size": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::size.size"
-    },
-    "sleeve": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::sleeve.sleeve"
     },
     "gender": {
       "type": "relation",
@@ -63,45 +82,11 @@
       "relation": "oneToOne",
       "target": "api::occasion.occasion"
     },
-    "color": {
+    "order": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::color.color"
-    },
-    "original_price": {
-      "type": "decimal"
-    },
-    "rental_price": {
-      "type": "decimal",
-      "required": true
-    },
-    "description": {
-      "type": "text"
-    },
-    "title": {
-      "type": "string"
-    },
-    "outfit_wore": {
-      "type": "integer"
-    },
-    "scurity_deposite": {
-      "type": "decimal"
-    },
-    "delivery_date": {
-      "type": "date"
-    },
-    "fabric": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::fabric.fabric"
-    },
-    "length": {
-      "type": "integer"
-    },
-    "rent_period": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::rent-period.rent-period"
+      "relation": "oneToMany",
+      "target": "api::order.order",
+      "mappedBy": "product"
     }
   }
 }

@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pyments",
+  "info": {
+    "singularName": "pyment",
+    "pluralName": "pyments",
+    "displayName": "Pyment",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "pyment_type": {
+      "type": "string",
+      "required": true
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "pyments"
+    }
+  }
+}

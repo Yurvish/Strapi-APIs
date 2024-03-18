@@ -1,0 +1,9 @@
+'use strict';
+
+/**
+ * pyment service
+ */
+
+const { createCoreService } = require('@strapi/strapi').factories;
+
+module.exports = createCoreService('api::pyment.pyment');

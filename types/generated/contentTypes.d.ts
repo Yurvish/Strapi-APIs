@@ -766,6 +766,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.role'
     >;
+    pyments: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::pyment.pyment'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -827,7 +832,7 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    category: Attribute.String;
+    category: Attribute.String & Attribute.Required;
     gender: Attribute.Relation<
       'api::category.category',
       'oneToOne',
@@ -874,6 +879,40 @@ export interface ApiColorColor extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::color.color',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiContactUsContactUs extends Schema.CollectionType {
+  collectionName: 'contact_uses';
+  info: {
+    singularName: 'contact-us';
+    pluralName: 'contact-uses';
+    displayName: 'Contact_US';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    email: Attribute.Email;
+    message: Attribute.String;
+    contact: Attribute.String & Attribute.Required;
+    name: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::contact-us.contact-us',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::contact-us.contact-us',
       'oneToOne',
       'admin::user'
     > &
@@ -1010,12 +1049,13 @@ export interface ApiOccasionOccasion extends Schema.CollectionType {
     singularName: 'occasion';
     pluralName: 'occasions';
     displayName: 'Occasion';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    occasion: Attribute.String;
+    occasion: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1048,14 +1088,14 @@ export interface ApiOrderOrder extends Schema.CollectionType {
   attributes: {
     product: Attribute.Relation<
       'api::order.order',
-      'oneToOne',
+      'manyToOne',
       'api::product.product'
     >;
     pyment_info: Attribute.JSON;
     name: Attribute.String;
     amount: Attribute.Decimal;
     status: Attribute.String;
-    users_permissions_user: Attribute.Relation<
+    user: Attribute.Relation<
       'api::order.order',
       'oneToOne',
       'plugin::users-permissions.user'
@@ -1096,28 +1136,33 @@ export interface ApiProductProduct extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    brand_name: Attribute.String & Attribute.Required;
-    rating: Attribute.Decimal & Attribute.Required;
+    brand_name: Attribute.String;
     image: Attribute.Media & Attribute.Required;
-    garment_type: Attribute.Relation<
+    color: Attribute.Relation<
       'api::product.product',
       'oneToOne',
-      'api::garment-type.garment-type'
+      'api::color.color'
     >;
-    neck_design: Attribute.Relation<
+    original_price: Attribute.Decimal & Attribute.Required;
+    rental_price: Attribute.Decimal & Attribute.Required;
+    description: Attribute.Text;
+    title: Attribute.String;
+    outfit_wore: Attribute.Integer & Attribute.Required;
+    scurity_deposite: Attribute.Decimal;
+    fabric: Attribute.Relation<
       'api::product.product',
       'oneToOne',
-      'api::neck-design.neck-design'
+      'api::fabric.fabric'
+    >;
+    admin_user: Attribute.Relation<
+      'api::product.product',
+      'oneToOne',
+      'admin::user'
     >;
     size: Attribute.Relation<
       'api::product.product',
       'oneToOne',
       'api::size.size'
-    >;
-    sleeve: Attribute.Relation<
-      'api::product.product',
-      'oneToOne',
-      'api::sleeve.sleeve'
     >;
     gender: Attribute.Relation<
       'api::product.product',
@@ -1134,28 +1179,10 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'oneToOne',
       'api::occasion.occasion'
     >;
-    color: Attribute.Relation<
+    order: Attribute.Relation<
       'api::product.product',
-      'oneToOne',
-      'api::color.color'
-    >;
-    original_price: Attribute.Decimal;
-    rental_price: Attribute.Decimal & Attribute.Required;
-    description: Attribute.Text;
-    title: Attribute.String;
-    outfit_wore: Attribute.Integer;
-    scurity_deposite: Attribute.Decimal;
-    delivery_date: Attribute.Date;
-    fabric: Attribute.Relation<
-      'api::product.product',
-      'oneToOne',
-      'api::fabric.fabric'
-    >;
-    length: Attribute.Integer;
-    rent_period: Attribute.Relation<
-      'api::product.product',
-      'oneToOne',
-      'api::rent-period.rent-period'
+      'oneToMany',
+      'api::order.order'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1168,6 +1195,42 @@ export interface ApiProductProduct extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::product.product',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPymentPyment extends Schema.CollectionType {
+  collectionName: 'pyments';
+  info: {
+    singularName: 'pyment';
+    pluralName: 'pyments';
+    displayName: 'Pyment';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    pyment_type: Attribute.String & Attribute.Required;
+    user: Attribute.Relation<
+      'api::pyment.pyment',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::pyment.pyment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::pyment.pyment',
       'oneToOne',
       'admin::user'
     > &
@@ -1250,7 +1313,7 @@ export interface ApiSizeSize extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    size: Attribute.String;
+    size: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1318,6 +1381,7 @@ declare module '@strapi/types' {
       'api::address.address': ApiAddressAddress;
       'api::category.category': ApiCategoryCategory;
       'api::color.color': ApiColorColor;
+      'api::contact-us.contact-us': ApiContactUsContactUs;
       'api::fabric.fabric': ApiFabricFabric;
       'api::garment-type.garment-type': ApiGarmentTypeGarmentType;
       'api::gender.gender': ApiGenderGender;
@@ -1325,6 +1389,7 @@ declare module '@strapi/types' {
       'api::occasion.occasion': ApiOccasionOccasion;
       'api::order.order': ApiOrderOrder;
       'api::product.product': ApiProductProduct;
+      'api::pyment.pyment': ApiPymentPyment;
       'api::rent-period.rent-period': ApiRentPeriodRentPeriod;
       'api::sign-up.sign-up': ApiSignUpSignUp;
       'api::size.size': ApiSizeSize;
