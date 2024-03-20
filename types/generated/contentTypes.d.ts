@@ -800,8 +800,20 @@ export interface ApiAddressAddress extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    addess: Attribute.Text;
-    city: Attribute.String;
+    addess: Attribute.Text & Attribute.Required;
+    city: Attribute.String & Attribute.Required;
+    zipcode: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 6;
+        maxLength: 6;
+      }>;
+    state: Attribute.String & Attribute.Required;
+    user: Attribute.Relation<
+      'api::address.address',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

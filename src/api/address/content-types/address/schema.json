@@ -13,10 +13,27 @@
   "pluginOptions": {},
   "attributes": {
     "addess": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "city": {
-      "type": "string"
+      "type": "string",
+      "required": true
+    },
+    "zipcode": {
+      "type": "string",
+      "required": true,
+      "maxLength": 6,
+      "minLength": 6
+    },
+    "state": {
+      "type": "string",
+      "required": true
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
     }
   }
 }
