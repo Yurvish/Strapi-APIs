@@ -771,6 +771,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'oneToMany',
       'api::pyment.pyment'
     >;
+    carts: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::cart.cart'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -828,6 +833,40 @@ export interface ApiAddressAddress extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCartCart extends Schema.CollectionType {
+  collectionName: 'carts';
+  info: {
+    singularName: 'cart';
+    pluralName: 'carts';
+    displayName: 'Cart';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    product: Attribute.Relation<
+      'api::cart.cart',
+      'manyToOne',
+      'api::product.product'
+    >;
+    startdate: Attribute.Date & Attribute.Required;
+    enddate: Attribute.Date & Attribute.Required;
+    user: Attribute.Relation<
+      'api::cart.cart',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::cart.cart', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::cart.cart', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -1197,6 +1236,11 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'plugin::users-permissions.user'
     > &
       Attribute.Required;
+    carts: Attribute.Relation<
+      'api::product.product',
+      'oneToMany',
+      'api::cart.cart'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1392,6 +1436,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::address.address': ApiAddressAddress;
+      'api::cart.cart': ApiCartCart;
       'api::category.category': ApiCategoryCategory;
       'api::color.color': ApiColorColor;
       'api::contact-us.contact-us': ApiContactUsContactUs;

@@ -71,6 +71,12 @@
       "relation": "oneToMany",
       "target": "api::pyment.pyment",
       "mappedBy": "user"
+    },
+    "carts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::cart.cart",
+      "mappedBy": "user"
     }
   }
 }
