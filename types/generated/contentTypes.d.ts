@@ -910,7 +910,7 @@ export interface ApiContactUsContactUs extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    email: Attribute.Email;
+    email: Attribute.Email & Attribute.Required;
     message: Attribute.String;
     contact: Attribute.String & Attribute.Required;
     name: Attribute.String;
