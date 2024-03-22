@@ -21,7 +21,7 @@
     "pyment_info": {
       "type": "json"
     },
-    "brandname": {
+    "name": {
       "type": "string",
       "required": true
     },

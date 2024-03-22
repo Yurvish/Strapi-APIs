@@ -1143,7 +1143,7 @@ export interface ApiOrderOrder extends Schema.CollectionType {
       'api::product.product'
     >;
     pyment_info: Attribute.JSON;
-    brandname: Attribute.String & Attribute.Required;
+    name: Attribute.String & Attribute.Required;
     amount: Attribute.Decimal & Attribute.Required;
     status: Attribute.String & Attribute.Required;
     user: Attribute.Relation<
