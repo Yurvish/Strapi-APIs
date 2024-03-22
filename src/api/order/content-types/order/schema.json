@@ -21,17 +21,17 @@
     "pyment_info": {
       "type": "json"
     },
-    "name": {
+    "brandname": {
       "type": "string",
-      "required":true
+      "required": true
     },
     "amount": {
       "type": "decimal",
-      "required":true
+      "required": true
     },
     "status": {
       "type": "string",
-      "required":true
+      "required": true
     },
     "user": {
       "type": "relation",
@@ -43,9 +43,9 @@
       "relation": "oneToOne",
       "target": "api::address.address"
     },
-    "tranjection_id": {
+    "transaction_id": {
       "type": "string",
-      "required":true
+      "required": true
     }
   }
 }
