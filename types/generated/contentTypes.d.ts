@@ -1146,8 +1146,7 @@ export interface ApiOrderOrder extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    pyment_info: Attribute.JSON;
-    name: Attribute.String & Attribute.Required;
+    outfit_name: Attribute.String & Attribute.Required;
     amount: Attribute.Decimal & Attribute.Required;
     status: Attribute.String & Attribute.Required;
     user: Attribute.Relation<
@@ -1162,6 +1161,7 @@ export interface ApiOrderOrder extends Schema.CollectionType {
     >;
     transaction_id: Attribute.String & Attribute.Required;
     product: Attribute.JSON;
+    cart: Attribute.Relation<'api::order.order', 'oneToOne', 'api::cart.cart'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

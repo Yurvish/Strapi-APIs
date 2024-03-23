@@ -12,10 +12,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "pyment_info": {
-      "type": "json"
-    },
-    "name": {
+    "outfit_name": {
       "type": "string",
       "required": true
     },
@@ -43,6 +40,11 @@
     },
     "product": {
       "type": "json"
+    },
+    "cart": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::cart.cart"
     }
   }
 }
