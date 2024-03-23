@@ -12,10 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "outfit_name": {
-      "type": "string",
-      "required": true
-    },
     "amount": {
       "type": "decimal",
       "required": true
@@ -40,11 +36,6 @@
     },
     "product": {
       "type": "json"
-    },
-    "cart": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::cart.cart"
     }
   }
 }
