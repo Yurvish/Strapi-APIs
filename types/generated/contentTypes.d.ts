@@ -1137,11 +1137,6 @@ export interface ApiOrderOrder extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    product: Attribute.Relation<
-      'api::order.order',
-      'manyToOne',
-      'api::product.product'
-    >;
     pyment_info: Attribute.JSON;
     name: Attribute.String & Attribute.Required;
     amount: Attribute.Decimal & Attribute.Required;
@@ -1157,6 +1152,7 @@ export interface ApiOrderOrder extends Schema.CollectionType {
       'api::address.address'
     >;
     transaction_id: Attribute.String & Attribute.Required;
+    product: Attribute.JSON;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1224,11 +1220,6 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'api::product.product',
       'oneToOne',
       'api::occasion.occasion'
-    >;
-    order: Attribute.Relation<
-      'api::product.product',
-      'oneToMany',
-      'api::order.order'
     >;
     user: Attribute.Relation<
       'api::product.product',

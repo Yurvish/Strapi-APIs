@@ -12,12 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "product": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::product.product",
-      "inversedBy": "order"
-    },
     "pyment_info": {
       "type": "json"
     },
@@ -46,6 +40,9 @@
     "transaction_id": {
       "type": "string",
       "required": true
+    },
+    "product": {
+      "type": "json"
     }
   }
 }

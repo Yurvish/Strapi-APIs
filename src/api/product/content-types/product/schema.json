@@ -77,12 +77,6 @@
       "relation": "oneToOne",
       "target": "api::occasion.occasion"
     },
-    "order": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::order.order",
-      "mappedBy": "product"
-    },
     "user": {
       "type": "relation",
       "relation": "oneToOne",
