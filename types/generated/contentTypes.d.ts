@@ -737,7 +737,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
   options: {
     draftAndPublish: false;
-    timestamps: true;
   };
   attributes: {
     username: Attribute.String &
@@ -775,6 +774,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'plugin::users-permissions.user',
       'oneToMany',
       'api::cart.cart'
+    >;
+    address: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToOne',
+      'api::address.address'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -860,6 +864,11 @@ export interface ApiCartCart extends Schema.CollectionType {
       'api::cart.cart',
       'manyToOne',
       'plugin::users-permissions.user'
+    >;
+    address: Attribute.Relation<
+      'api::cart.cart',
+      'oneToOne',
+      'api::address.address'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
