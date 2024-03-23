@@ -25,16 +25,14 @@
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user"
     },
-    "address": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::address.address"
-    },
     "transaction_id": {
       "type": "string",
       "required": true
     },
     "product": {
+      "type": "json"
+    },
+    "address": {
       "type": "json"
     }
   }

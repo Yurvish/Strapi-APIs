@@ -1153,13 +1153,9 @@ export interface ApiOrderOrder extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.user'
     >;
-    address: Attribute.Relation<
-      'api::order.order',
-      'oneToOne',
-      'api::address.address'
-    >;
     transaction_id: Attribute.String & Attribute.Required;
     product: Attribute.JSON;
+    address: Attribute.JSON;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
